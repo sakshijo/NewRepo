@@ -18,3 +18,11 @@ steps:
     echo See https://aka.ms/yaml
 
   displayName: 'Run a multi-line script'
+  
+  - task: AzureRmWebAppDeployment@3
+  inputs:
+    azureSubscription: '<Azure service connections>'
+    WebAppName: 'Sample'
+    Package: '$(System.DefaultWorkingDirectory)'
+    GenerateWebConfig: true
+    WebConfigParameters: '-Handler iisnode -NodeStartFile server.js -appType node'
